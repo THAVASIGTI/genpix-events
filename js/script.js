@@ -5,6 +5,11 @@
   const $ = (s, c) => (c || document).querySelector(s);
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
 
+  const PAGES = ['home', 'about', 'process', 'expertise', 'clients', 'work', 'contact'];
+  const ALIAS = { shows: 'work', testimonials: 'clients', '': 'home' };
+  const allPages = $$('[data-page]');
+  let currentPage = 'home';
+
   /* --- Year --- */
   const yearEl = $('#year'); if (yearEl) yearEl.textContent = new Date().getFullYear();
 
@@ -24,17 +29,35 @@
   if (themeBtn) themeBtn.addEventListener('click', () =>
     applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
 
-  /* ===== NAV: sticky + progress + mobile menu ===== */
+  /* ===== ACTIVE NAV + SCROLL SPY ===== */
+  const resolve = (hash) => { let p = (hash || '').replace('#', ''); p = ALIAS[p] || p; return PAGES.includes(p) ? p : 'home'; };
+  function setActiveLink(page) {
+    $$('.nav__links a').forEach(a => a.classList.toggle('active', resolve(a.getAttribute('href')) === page));
+  }
+  function scrollSpy() {
+    if (currentPage !== 'home') return;
+    const probe = window.scrollY + window.innerHeight * 0.32;
+    let active = 'home';
+    allPages.forEach(s => {
+      if (s.classList.contains('hidden-page')) return;
+      const top = s.offsetTop, bottom = top + s.offsetHeight;
+      if (probe >= top && probe < bottom) active = s.dataset.page;
+    });
+    setActiveLink(active);
+  }
+
+  /* ===== NAV: sticky + progress + spy ===== */
   const nav = $('#nav');
   const progress = $('#progress');
-  const onScroll = () => {
+  function onScroll() {
     nav.classList.toggle('scrolled', window.scrollY > 40);
     const h = document.documentElement, max = h.scrollHeight - h.clientHeight;
     progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-  };
-  onScroll();
+    scrollSpy();
+  }
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* ===== mobile menu ===== */
   const navToggle = $('#navToggle');
   const navLinks = $('#navLinks');
   const closeMenu = () => { navLinks.classList.remove('open'); nav.classList.remove('menu-open'); };
@@ -53,7 +76,7 @@
   const twEls = $$('.tw');
   twEls.forEach(el => { el._twHTML = el.innerHTML; });
   function runTW(el, speed) {
-    el.innerHTML = el._twHTML;                 // restore original
+    el.innerHTML = el._twHTML;
     if (reduceMotion) return;
     const tokens = buildTokens(el);
     el.style.minHeight = el.offsetHeight + 'px';
@@ -88,41 +111,51 @@
     requestAnimationFrame(tick);
   }
 
-  /* ===== ANIMATE A PAGE WHEN SHOWN ===== */
-  function animatePage(page) {
-    const secs = $$('[data-page="' + page + '"]');
-    let i = 0;
-    secs.forEach(sec => {
-      $$('.reveal', sec).forEach(el => {
-        el.classList.remove('in');
-        const idx = i++;
-        if (reduceMotion) { el.classList.add('in'); }
-        else { setTimeout(() => el.classList.add('in'), 70 + (idx % 6) * 90); }
-      });
-      $$('.tw', sec).forEach(el => {
-        const d = parseInt(el.dataset.twDelay || '0', 10) || 240;
-        setTimeout(() => runTW(el, 36), d);
-      });
-      $$('.stat__num', sec).forEach(el => setTimeout(() => runCounter(el), 400));
-    });
+  /* ===== SCROLL-TRIGGERED ANIMATIONS ===== */
+  let observers = [];
+  function setupScrollAnimations() {
+    observers.forEach(o => o.disconnect()); observers = [];
+    // reset everything to its initial (un-animated) state
+    $$('.reveal').forEach(el => el.classList.remove('in'));
+    twEls.forEach(el => { el.innerHTML = el._twHTML; });
+    $$('.stat__num').forEach(el => { el.textContent = '0'; });
+
+    if (reduceMotion) {
+      $$('.reveal').forEach(el => el.classList.add('in'));
+      $$('.stat__num').forEach(el => el.textContent = el.dataset.count);
+      return;
+    }
+    const revealIO = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    $$('.reveal').forEach(el => revealIO.observe(el));
+
+    const twIO = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { const el = e.target; const d = parseInt(el.dataset.twDelay || '0', 10) || 200; setTimeout(() => runTW(el, 36), d); twIO.unobserve(el); } });
+    }, { threshold: 0.5 });
+    twEls.forEach(el => twIO.observe(el));
+
+    const countIO = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { runCounter(e.target); countIO.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    $$('.stat__num').forEach(el => countIO.observe(el));
+
+    observers.push(revealIO, twIO, countIO);
   }
 
   /* ===== SECTION ROUTER ===== */
-  const PAGES = ['home', 'about', 'process', 'expertise', 'clients', 'work', 'contact'];
-  const ALIAS = { shows: 'work', testimonials: 'clients', '': 'home' };
-  const allPages = $$('[data-page]');
-  const resolve = (hash) => { let p = (hash || '').replace('#', ''); p = ALIAS[p] || p; return PAGES.includes(p) ? p : 'home'; };
-
   function render(page) {
     page = PAGES.includes(page) ? page : 'home';
-    allPages.forEach(s => s.classList.toggle('hidden-page', s.dataset.page !== page));
+    currentPage = page;
+    const showAll = (page === 'home');                       // HOME = full site, all sections
+    allPages.forEach(s => s.classList.toggle('hidden-page', !showAll && s.dataset.page !== page));
     Array.from(document.body.classList).forEach(c => { if (c.indexOf('page-') === 0) document.body.classList.remove(c); });
     document.body.classList.add('page-' + page);
-    $$('.nav__links a').forEach(a => a.classList.toggle('active', resolve(a.getAttribute('href')) === page));
+    setActiveLink(page);
     window.scrollTo(0, 0);
-    onScroll();
     closeMenu();
-    animatePage(page);
+    setupScrollAnimations();
+    onScroll();
     document.title = (page === 'home' ? 'GENPIX EVENTS — Where Events Become Experience'
       : page.charAt(0).toUpperCase() + page.slice(1) + ' · GENPIX EVENTS');
   }
@@ -133,10 +166,10 @@
     const href = a.getAttribute('href') || '';
     if (href.charAt(0) !== '#') return;
     e.preventDefault();
-    if (!a.hasAttribute('data-link')) return;          // placeholder/social '#'
+    if (!a.hasAttribute('data-link')) return;
     const p = resolve(href);
-    if (resolve(location.hash) === p) render(p);        // re-animate same page
-    else location.hash = p;                             // triggers hashchange
+    if (resolve(location.hash) === p) render(p);
+    else location.hash = p;
   });
   window.addEventListener('hashchange', () => render(resolve(location.hash)));
   render(resolve(location.hash));
