@@ -97,6 +97,8 @@ p { color: var(--text); }
 
 .tw-caret { display: inline-block; width: 2px; margin-left: 2px; background: var(--gold); animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
+.rotate-caret { display: inline-block; width: 3px; height: .9em; margin-left: 5px; background: var(--gold); vertical-align: baseline; animation: blink 1s steps(1) infinite; }
+.rotate-word { display: inline-block; }
 
 /* ===== BUTTONS ===== */
 .btn { display: inline-block; padding: 15px 34px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; transition: transform .3s, box-shadow .3s, background .3s, color .3s; cursor: pointer; border: 1.5px solid transparent; }
