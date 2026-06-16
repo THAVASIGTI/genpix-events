@@ -23,8 +23,8 @@
     if (themeBtn) themeBtn.textContent = (t === 'light') ? '☾' : '☀';
     try { localStorage.setItem('gp-theme', t); } catch (e) {}
   }
-  let savedTheme = 'dark';
-  try { savedTheme = localStorage.getItem('gp-theme') || 'dark'; } catch (e) {}
+  let savedTheme = 'light';
+  try { savedTheme = localStorage.getItem('gp-theme') || 'light'; } catch (e) {}
   applyTheme(savedTheme);
   if (themeBtn) themeBtn.addEventListener('click', () =>
     applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
@@ -56,6 +56,17 @@
     scrollSpy();
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ===== HERO BACKGROUND SLIDESHOW ===== */
+  const heroSlides = $$('#heroBg .hero__slide');
+  if (heroSlides.length > 1 && !reduceMotion) {
+    let hi = 0;
+    setInterval(() => {
+      heroSlides[hi].classList.remove('is-active');
+      hi = (hi + 1) % heroSlides.length;
+      heroSlides[hi].classList.add('is-active');
+    }, 5000);
+  }
 
   /* ===== mobile menu ===== */
   const navToggle = $('#navToggle');
