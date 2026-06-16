@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,286 +15,230 @@
   <!-- ===== SCROLL PROGRESS BAR ===== -->
   <div class="progress" id="progress"></div>
 
-  <!-- ===== NAV ===== -->
+  <!-- ===== NAV (common header) ===== -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
-      <a href="#home" class="brand">
-        <img src="assets/logo/logo-white.png" alt="GenPix Events" class="brand__logo" />
+      <a href="#home" class="brand" data-link>
+        <img src="assets/logo/logo-white.png" alt="GenPix Events" class="brand__logo" id="navLogo" />
       </a>
       <nav class="nav__links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#process">Process</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#clients">Clients</a>
-        <a href="#work">Work</a>
-        <a href="#contact" class="nav__cta">Contact</a>
+        <a href="#home" data-link>Home</a>
+        <a href="#about" data-link>About</a>
+        <a href="#process" data-link>Process</a>
+        <a href="#expertise" data-link>Expertise</a>
+        <a href="#clients" data-link>Clients</a>
+        <a href="#work" data-link>Work</a>
+        <a href="#contact" class="nav__cta" data-link>Contact</a>
       </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch theme" title="Switch theme">☀</button>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="home">
-    <div class="hero__bg"></div>
-    <div class="hero__overlay"></div>
-    <div class="hero__grain"></div>
-    <div class="container hero__content">
-      <img src="assets/logo/logo-white.png" alt="GenPix Events" class="hero__logo reveal" />
-      <p class="hero__eyebrow reveal">EVENT MANAGEMENT · BRAND ACTIVATIONS · PRODUCTION</p>
-      <h1 class="hero__title tw" data-tw-delay="300">Where Events<br />Become <span class="gold">Experience</span></h1>
-      <p class="hero__text reveal">We create unforgettable moments with precision, creativity, and seamless execution — bringing your vision to life with innovation and attention to detail.</p>
-      <div class="hero__actions reveal">
-        <a href="#contact" class="btn btn--gold">Plan Your Event</a>
-        <a href="#work" class="btn btn--ghost">View Our Work</a>
-      </div>
-    </div>
-    <a href="#about" class="hero__scroll" aria-label="Scroll down"><span></span></a>
-  </section>
+  <main id="main">
 
-  <!-- ===== MARQUEE STRIP ===== -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span>EXECUTION ✦ BRAND ACTIVATIONS ✦ LIGHTING &amp; SOUND ✦ STAGE PRODUCTION ✦ TEAM BUILDING ✦ NETWORKING EVENTS ✦ </span>
-      <span>EXECUTION ✦ BRAND ACTIVATIONS ✦ LIGHTING &amp; SOUND ✦ STAGE PRODUCTION ✦ TEAM BUILDING ✦ NETWORKING EVENTS ✦ </span>
-    </div>
-  </div>
-
-  <!-- ===== ABOUT ===== -->
-  <section class="section about" id="about">
-    <div class="container about__grid">
-      <div class="about__text reveal">
-        <p class="kicker">Who We Are</p>
-        <h2 class="section__title tw">Building experiences <span class="gold">the right way.</span></h2>
-        <p class="lead">From corporate events and social gatherings to brand activations, we bring your vision to life. Every detail is engineered — from concept and planning to flawless on-ground execution.</p>
-        <p>Precision. Creativity. Seamless execution. That's how we turn a brief into a moment people remember.</p>
-        <a href="#contact" class="link-arrow">Work with us &rarr;</a>
-      </div>
-      <div class="about__stats reveal">
-        <div class="stat"><span class="stat__num" data-count="500">0</span><span class="stat__plus">+</span><p>Events Delivered</p></div>
-        <div class="stat"><span class="stat__num" data-count="40">0</span><span class="stat__plus">+</span><p>Brands Served</p></div>
-        <div class="stat"><span class="stat__num" data-count="2">0</span><p>Cities · Chennai &amp; Madurai</p></div>
-        <div class="stat"><span class="stat__num" data-count="100">0</span><span class="stat__plus">%</span><p>On-ground Execution</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PROCESS ===== -->
-  <section class="section process" id="process">
-    <div class="container">
-      <div class="section__head reveal">
-        <p class="kicker">How We Work</p>
-        <h2 class="section__title tw">From brief to <span class="gold">brilliance</span></h2>
-      </div>
-      <div class="steps">
-        <div class="step reveal">
-          <span class="step__num">01</span>
-          <h3>Discover</h3>
-          <p>We listen to your vision, goals, and audience — then shape a concept that fits your brand.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step__num">02</span>
-          <h3>Design</h3>
-          <p>Stage, lighting, sound and flow — we design every detail of the experience on paper first.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step__num">03</span>
-          <h3>Produce</h3>
-          <p>Our crew builds it on-ground with precision — LED walls, trussing, audio and lighting rigs.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step__num">04</span>
-          <h3>Deliver</h3>
-          <p>Show day, flawlessly run. We manage every cue so you enjoy the moment with your guests.</p>
+    <!-- ===== HOME ===== -->
+    <section class="hero" id="home" data-page="home">
+      <div class="hero__bg"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__grain"></div>
+      <div class="container hero__content">
+        <img src="assets/logo/logo-white.png" alt="GenPix Events" class="hero__logo reveal" />
+        <p class="hero__eyebrow reveal">EVENT MANAGEMENT · BRAND ACTIVATIONS · PRODUCTION</p>
+        <h1 class="hero__title tw" data-tw-delay="300">Where Events<br />Become <span class="gold">Experience</span></h1>
+        <p class="hero__text reveal">We create unforgettable moments with precision, creativity, and seamless execution — bringing your vision to life with innovation and attention to detail.</p>
+        <div class="hero__actions reveal">
+          <a href="#contact" class="btn btn--gold" data-link>Plan Your Event</a>
+          <a href="#work" class="btn btn--ghost" data-link>View Our Work</a>
         </div>
       </div>
-    </div>
-  </section>
+      <a href="#about" class="hero__scroll" aria-label="Go to About" data-link><span></span></a>
+    </section>
 
-  <!-- ===== EXPERTISE ===== -->
-  <section class="section expertise" id="expertise">
-    <div class="container">
-      <div class="section__head reveal">
-        <p class="kicker">Expertise In</p>
-        <h2 class="section__title tw">What we <span class="gold">do best</span></h2>
-      </div>
-      <div class="cards">
-        <article class="card reveal"><div class="card__icon">🎬</div><h3>Event Execution</h3><p>End-to-end management — concept, logistics, and flawless delivery on the day.</p></article>
-        <article class="card reveal"><div class="card__icon">📣</div><h3>Brand Activations</h3><p>On-ground campaigns and experiential setups that make brands unforgettable.</p></article>
-        <article class="card reveal"><div class="card__icon">💡</div><h3>Lighting &amp; Sound</h3><p>Stage, LED walls, audio and lighting engineered for shows of any scale.</p></article>
-        <article class="card reveal"><div class="card__icon">📋</div><h3>Planning &amp; Implementation</h3><p>Detailed pre-production and project management from brief to wrap.</p></article>
-        <article class="card reveal"><div class="card__icon">🤝</div><h3>Team-Building</h3><p>Engaging corporate experiences designed to connect and energize teams.</p></article>
-        <article class="card reveal"><div class="card__icon">🌐</div><h3>Networking Events</h3><p>Curated gatherings that bring the right people into the right room.</p></article>
+    <div class="marquee" data-page="home" aria-hidden="true">
+      <div class="marquee__track">
+        <span>EXECUTION ✦ BRAND ACTIVATIONS ✦ LIGHTING &amp; SOUND ✦ STAGE PRODUCTION ✦ TEAM BUILDING ✦ NETWORKING EVENTS ✦ </span>
+        <span>EXECUTION ✦ BRAND ACTIVATIONS ✦ LIGHTING &amp; SOUND ✦ STAGE PRODUCTION ✦ TEAM BUILDING ✦ NETWORKING EVENTS ✦ </span>
       </div>
     </div>
-  </section>
 
-  <!-- ===== CLIENTS ===== -->
-  <section class="section clients" id="clients">
-    <div class="container">
-      <div class="section__head reveal">
-        <p class="kicker">Our Clients</p>
-        <h2 class="section__title tw">Trusted by leading <span class="gold">brands</span></h2>
+    <!-- ===== ABOUT ===== -->
+    <section class="section about" id="about" data-page="about">
+      <div class="container about__grid">
+        <div class="about__text reveal">
+          <p class="kicker">Who We Are</p>
+          <h2 class="section__title tw">Building experiences <span class="gold">the right way.</span></h2>
+          <p class="lead">From corporate events and social gatherings to brand activations, we bring your vision to life. Every detail is engineered — from concept and planning to flawless on-ground execution.</p>
+          <p>Precision. Creativity. Seamless execution. That's how we turn a brief into a moment people remember.</p>
+          <a href="#contact" class="link-arrow" data-link>Work with us &rarr;</a>
+        </div>
+        <div class="about__stats reveal" data-anim="right">
+          <div class="stat"><span class="stat__num" data-count="500">0</span><span class="stat__plus">+</span><p>Events Delivered</p></div>
+          <div class="stat"><span class="stat__num" data-count="40">0</span><span class="stat__plus">+</span><p>Brands Served</p></div>
+          <div class="stat"><span class="stat__num" data-count="2">0</span><p>Cities · Chennai &amp; Madurai</p></div>
+          <div class="stat"><span class="stat__num" data-count="100">0</span><span class="stat__plus">%</span><p>On-ground Execution</p></div>
+        </div>
       </div>
-      <div class="logos reveal">
-        <span class="logo-chip">Zee Tamil</span>
-        <span class="logo-chip">ZEE5</span>
-        <span class="logo-chip">Zee Thirai</span>
-        <span class="logo-chip">Vijay TV</span>
-        <span class="logo-chip">Kumudam</span>
-        <span class="logo-chip">Puthaga Thiruvizha</span>
-        <span class="logo-chip">Sun Direct</span>
-        <span class="logo-chip">Airtel</span>
-        <span class="logo-chip">Asian Paints</span>
-        <span class="logo-chip">Nippon Paint</span>
-        <span class="logo-chip">Zutail</span>
-        <span class="logo-chip">Powerol by Mahindra</span>
-        <span class="logo-chip">Wilo Pumps</span>
-        <span class="logo-chip">Thiagarajar College of Engineering</span>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== WORK / GALLERY ===== -->
-  <section class="section work" id="work">
-    <div class="container">
-      <div class="section__head reveal">
-        <p class="kicker">Our Work</p>
-        <h2 class="section__title tw">We engineer the environments where <span class="gold">great shows happen</span></h2>
+    <!-- ===== PROCESS ===== -->
+    <section class="section process" id="process" data-page="process">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker">How We Work</p>
+          <h2 class="section__title tw">From brief to <span class="gold">brilliance</span></h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><span class="step__num">01</span><h3>Discover</h3><p>We listen to your vision, goals, and audience — then shape a concept that fits your brand.</p></div>
+          <div class="step reveal"><span class="step__num">02</span><h3>Design</h3><p>Stage, lighting, sound and flow — we design every detail of the experience on paper first.</p></div>
+          <div class="step reveal"><span class="step__num">03</span><h3>Produce</h3><p>Our crew builds it on-ground with precision — LED walls, trussing, audio and lighting rigs.</p></div>
+          <div class="step reveal"><span class="step__num">04</span><h3>Deliver</h3><p>Show day, flawlessly run. We manage every cue so you enjoy the moment with your guests.</p></div>
+        </div>
       </div>
-      <div class="gallery" id="gallery">
-        <figure class="gallery__item reveal" data-span="2"><img src="assets/gallery/g1.webp" alt="Grand outdoor stage event" loading="lazy" /></figure>
-        <figure class="gallery__item reveal"><img src="assets/gallery/g4.webp" alt="Kalidass audio launch" loading="lazy" /></figure>
-        <figure class="gallery__item reveal"><img src="assets/gallery/g6.webp" alt="Event production" loading="lazy" /></figure>
-        <figure class="gallery__item reveal"><img src="assets/gallery/g3.webp" alt="Stage and seating setup" loading="lazy" /></figure>
-        <figure class="gallery__item reveal" data-span="2"><img src="assets/gallery/g5.webp" alt="Lighting and sound production" loading="lazy" /></figure>
-        <figure class="gallery__item reveal"><img src="assets/gallery/g2.webp" alt="Live event" loading="lazy" /></figure>
-        <figure class="gallery__item reveal"><img src="assets/gallery/g7.webp" alt="Project showcase" loading="lazy" /></figure>
-        <figure class="gallery__item reveal"><img src="assets/gallery/g8.webp" alt="Project showcase" loading="lazy" /></figure>
-        <figure class="gallery__item reveal"><img src="assets/gallery/g9.webp" alt="Project showcase" loading="lazy" /></figure>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== SHOWS BANNER ===== -->
-  <section class="shows" id="shows">
-    <div class="shows__bg"></div>
-    <div class="shows__overlay"></div>
-    <div class="container shows__content reveal">
-      <p class="kicker kicker--light">Event Production</p>
-      <h2 class="shows__title tw">Lights. Sound. <span class="gold">Spectacle.</span></h2>
-      <p class="shows__text">From intimate gatherings to crowds in the thousands — we build the stage for moments that matter.</p>
-      <a href="#contact" class="btn btn--gold">Plan Your Event</a>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="section testimonials" id="testimonials">
-    <div class="container">
-      <div class="section__head reveal">
-        <p class="kicker">Kind Words</p>
-        <h2 class="section__title tw">What our clients <span class="gold">say</span></h2>
+    <!-- ===== EXPERTISE ===== -->
+    <section class="section expertise" id="expertise" data-page="expertise">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker">Expertise In</p>
+          <h2 class="section__title tw">What we <span class="gold">do best</span></h2>
+        </div>
+        <div class="cards">
+          <article class="card reveal"><div class="card__icon">🎬</div><h3>Event Execution</h3><p>End-to-end management — concept, logistics, and flawless delivery on the day.</p></article>
+          <article class="card reveal"><div class="card__icon">📣</div><h3>Brand Activations</h3><p>On-ground campaigns and experiential setups that make brands unforgettable.</p></article>
+          <article class="card reveal"><div class="card__icon">💡</div><h3>Lighting &amp; Sound</h3><p>Stage, LED walls, audio and lighting engineered for shows of any scale.</p></article>
+          <article class="card reveal"><div class="card__icon">📋</div><h3>Planning &amp; Implementation</h3><p>Detailed pre-production and project management from brief to wrap.</p></article>
+          <article class="card reveal"><div class="card__icon">🤝</div><h3>Team-Building</h3><p>Engaging corporate experiences designed to connect and energize teams.</p></article>
+          <article class="card reveal"><div class="card__icon">🌐</div><h3>Networking Events</h3><p>Curated gatherings that bring the right people into the right room.</p></article>
+        </div>
       </div>
-      <div class="quotes">
-        <figure class="quote reveal">
-          <div class="quote__stars">★★★★★</div>
-          <blockquote>"GenPix turned our product launch into a spectacle. Flawless execution from stage to sound — our audience is still talking about it."</blockquote>
-          <figcaption><strong>Priya R.</strong><span>Marketing Head, Consumer Brand</span></figcaption>
-        </figure>
-        <figure class="quote reveal">
-          <div class="quote__stars">★★★★★</div>
-          <blockquote>"The level of detail and on-ground coordination was outstanding. They handled a 5,000+ crowd like it was effortless."</blockquote>
-          <figcaption><strong>Karthik S.</strong><span>Event Director, Media House</span></figcaption>
-        </figure>
-        <figure class="quote reveal">
-          <div class="quote__stars">★★★★★</div>
-          <blockquote>"Creative, reliable, and genuinely passionate. GenPix is now our go-to partner for every brand activation."</blockquote>
-          <figcaption><strong>Anitha M.</strong><span>Brand Manager, Retail Chain</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section class="section contact" id="contact">
-    <div class="container">
-      <div class="section__head reveal">
-        <img src="assets/logo/logo-black.png" alt="GenPix Events" class="contact__logo" />
-        <p class="kicker">Get In Touch</p>
-        <h2 class="section__title tw">Let's plan something <span class="gold">unforgettable</span></h2>
+    <!-- ===== CLIENTS (+ testimonials) ===== -->
+    <section class="section clients" id="clients" data-page="clients">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker">Our Clients</p>
+          <h2 class="section__title tw">Trusted by leading <span class="gold">brands</span></h2>
+        </div>
+        <div class="logos reveal">
+          <span class="logo-chip">Zee Tamil</span>
+          <span class="logo-chip">ZEE5</span>
+          <span class="logo-chip">Zee Thirai</span>
+          <span class="logo-chip">Vijay TV</span>
+          <span class="logo-chip">Kumudam</span>
+          <span class="logo-chip">Puthaga Thiruvizha</span>
+          <span class="logo-chip">Sun Direct</span>
+          <span class="logo-chip">Airtel</span>
+          <span class="logo-chip">Asian Paints</span>
+          <span class="logo-chip">Nippon Paint</span>
+          <span class="logo-chip">Zutail</span>
+          <span class="logo-chip">Powerol by Mahindra</span>
+          <span class="logo-chip">Wilo Pumps</span>
+          <span class="logo-chip">Thiagarajar College of Engineering</span>
+        </div>
       </div>
+    </section>
 
-      <div class="contact__grid">
-        <!-- Contact info cards -->
-        <div class="contact__info reveal">
-          <a class="info-card" href="tel:+918838642610">
-            <span class="info-card__ic">📞</span>
-            <div><h4>Call Us</h4><p>+91 88386 42610<br />+91 94439 34478</p></div>
-          </a>
-          <a class="info-card" href="https://wa.me/918838642610" target="_blank" rel="noopener">
-            <span class="info-card__ic">💬</span>
-            <div><h4>WhatsApp</h4><p>+91 88386 42610</p></div>
-          </a>
-          <a class="info-card" href="mailto:hello@genpixevents.in">
-            <span class="info-card__ic">✉️</span>
-            <div><h4>Email</h4><p>hello@genpixevents.in<br />info@genpixevents.in</p></div>
-          </a>
-          <div class="info-card">
-            <span class="info-card__ic">📍</span>
-            <div>
-              <h4>Chennai HO</h4><p>4/127 Vannier 1st Street, Choolaimedu, Chennai – 600094</p>
-              <h4 style="margin-top:14px">Madurai</h4><p>26A, New Mahalipatti Road, Madurai – 625001</p>
+    <section class="section testimonials" id="testimonials" data-page="clients">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker">Kind Words</p>
+          <h2 class="section__title tw">What our clients <span class="gold">say</span></h2>
+        </div>
+        <div class="quotes">
+          <figure class="quote reveal"><div class="quote__stars">★★★★★</div><blockquote>"GenPix turned our product launch into a spectacle. Flawless execution from stage to sound — our audience is still talking about it."</blockquote><figcaption><strong>Priya R.</strong><span>Marketing Head, Consumer Brand</span></figcaption></figure>
+          <figure class="quote reveal"><div class="quote__stars">★★★★★</div><blockquote>"The level of detail and on-ground coordination was outstanding. They handled a 5,000+ crowd like it was effortless."</blockquote><figcaption><strong>Karthik S.</strong><span>Event Director, Media House</span></figcaption></figure>
+          <figure class="quote reveal"><div class="quote__stars">★★★★★</div><blockquote>"Creative, reliable, and genuinely passionate. GenPix is now our go-to partner for every brand activation."</blockquote><figcaption><strong>Anitha M.</strong><span>Brand Manager, Retail Chain</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WORK (+ shows banner) ===== -->
+    <section class="section work" id="work" data-page="work">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker">Our Work</p>
+          <h2 class="section__title tw">We engineer the environments where <span class="gold">great shows happen</span></h2>
+        </div>
+        <div class="gallery" id="gallery">
+          <figure class="gallery__item reveal" data-span="2"><img src="assets/gallery/g1.webp" alt="Grand outdoor stage event" loading="lazy" /></figure>
+          <figure class="gallery__item reveal"><img src="assets/gallery/g4.webp" alt="Kalidass audio launch" loading="lazy" /></figure>
+          <figure class="gallery__item reveal"><img src="assets/gallery/g6.webp" alt="Event production" loading="lazy" /></figure>
+          <figure class="gallery__item reveal"><img src="assets/gallery/g3.webp" alt="Stage and seating setup" loading="lazy" /></figure>
+          <figure class="gallery__item reveal" data-span="2"><img src="assets/gallery/g5.webp" alt="Lighting and sound production" loading="lazy" /></figure>
+          <figure class="gallery__item reveal"><img src="assets/gallery/g2.webp" alt="Live event" loading="lazy" /></figure>
+          <figure class="gallery__item reveal"><img src="assets/gallery/g7.webp" alt="Project showcase" loading="lazy" /></figure>
+          <figure class="gallery__item reveal"><img src="assets/gallery/g8.webp" alt="Project showcase" loading="lazy" /></figure>
+          <figure class="gallery__item reveal"><img src="assets/gallery/g9.webp" alt="Project showcase" loading="lazy" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="shows" id="shows" data-page="work">
+      <div class="shows__bg"></div>
+      <div class="shows__overlay"></div>
+      <div class="container shows__content reveal">
+        <p class="kicker kicker--light">Event Production</p>
+        <h2 class="shows__title tw">Lights. Sound. <span class="gold">Spectacle.</span></h2>
+        <p class="shows__text">From intimate gatherings to crowds in the thousands — we build the stage for moments that matter.</p>
+        <a href="#contact" class="btn btn--gold" data-link>Plan Your Event</a>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact" data-page="contact">
+      <div class="container">
+        <div class="section__head reveal">
+          <img src="assets/logo/logo-black.png" alt="GenPix Events" class="contact__logo" />
+          <p class="kicker">Get In Touch</p>
+          <h2 class="section__title tw">Let's plan something <span class="gold">unforgettable</span></h2>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__info reveal" data-anim="left">
+            <a class="info-card" href="tel:+918838642610"><span class="info-card__ic">📞</span><div><h4>Call Us</h4><p>+91 88386 42610<br />+91 94439 34478</p></div></a>
+            <a class="info-card" href="https://wa.me/918838642610" target="_blank" rel="noopener"><span class="info-card__ic">💬</span><div><h4>WhatsApp</h4><p>+91 88386 42610</p></div></a>
+            <a class="info-card" href="mailto:hello@genpixevents.in"><span class="info-card__ic">✉️</span><div><h4>Email</h4><p>hello@genpixevents.in<br />info@genpixevents.in</p></div></a>
+            <div class="info-card"><span class="info-card__ic">📍</span><div><h4>Chennai HO</h4><p>4/127 Vannier 1st Street, Choolaimedu, Chennai – 600094</p><h4 style="margin-top:14px">Madurai</h4><p>26A, New Mahalipatti Road, Madurai – 625001</p></div></div>
+            <div class="socials">
+              <a href="#" aria-label="Instagram" title="Instagram">IG</a>
+              <a href="#" aria-label="Facebook" title="Facebook">FB</a>
+              <a href="#" aria-label="YouTube" title="YouTube">YT</a>
+              <a href="#" aria-label="LinkedIn" title="LinkedIn">IN</a>
             </div>
           </div>
-          <div class="socials">
-            <a href="#" aria-label="Instagram" title="Instagram">IG</a>
-            <a href="#" aria-label="Facebook" title="Facebook">FB</a>
-            <a href="#" aria-label="YouTube" title="YouTube">YT</a>
-            <a href="#" aria-label="LinkedIn" title="LinkedIn">IN</a>
-          </div>
-        </div>
 
-        <!-- Contact form -->
-        <form class="contact__form reveal" id="contactForm" novalidate>
-          <div class="field">
-            <input type="text" id="name" name="name" required placeholder=" " />
-            <label for="name">Your Name</label>
-          </div>
-          <div class="row">
-            <div class="field">
-              <input type="email" id="email" name="email" required placeholder=" " />
-              <label for="email">Email</label>
+          <form class="contact__form reveal" data-anim="right" id="contactForm" novalidate>
+            <div class="field"><input type="text" id="name" name="name" required placeholder=" " /><label for="name">Your Name</label></div>
+            <div class="row">
+              <div class="field"><input type="email" id="email" name="email" required placeholder=" " /><label for="email">Email</label></div>
+              <div class="field"><input type="tel" id="phone" name="phone" placeholder=" " /><label for="phone">Phone</label></div>
             </div>
             <div class="field">
-              <input type="tel" id="phone" name="phone" placeholder=" " />
-              <label for="phone">Phone</label>
+              <select id="type" name="type" required>
+                <option value="" disabled selected hidden></option>
+                <option>Corporate Event</option>
+                <option>Brand Activation</option>
+                <option>Wedding / Social</option>
+                <option>Stage Production</option>
+                <option>Other</option>
+              </select>
+              <label for="type" class="label--static">Event Type</label>
             </div>
-          </div>
-          <div class="field">
-            <select id="type" name="type" required>
-              <option value="" disabled selected hidden></option>
-              <option>Corporate Event</option>
-              <option>Brand Activation</option>
-              <option>Wedding / Social</option>
-              <option>Stage Production</option>
-              <option>Other</option>
-            </select>
-            <label for="type" class="label--static">Event Type</label>
-          </div>
-          <div class="field">
-            <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
-            <label for="message">Tell us about your event</label>
-          </div>
-          <button type="submit" class="btn btn--gold btn--full">Send Enquiry</button>
-          <p class="form-note" id="formNote" hidden>✓ Thanks! This is a demo form — connect it to email/WhatsApp to receive enquiries.</p>
-        </form>
+            <div class="field"><textarea id="message" name="message" rows="4" required placeholder=" "></textarea><label for="message">Tell us about your event</label></div>
+            <button type="submit" class="btn btn--gold btn--full">Send Enquiry</button>
+            <p class="form-note" id="formNote" hidden>✓ Thanks! This is a demo form — connect it to email/WhatsApp to receive enquiries.</p>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
+  </main>
+
+  <!-- ===== FOOTER (common) ===== -->
   <footer class="footer">
     <div class="container footer__content">
       <div class="footer__brand reveal">
@@ -308,8 +252,8 @@
         </div>
       </div>
       <div class="footer__cols">
-        <div class="footer__col reveal"><h4>Chennai HO</h4><p>4/127 Vannier 1st Street,<br />Choolaimedu,<br />Chennai – 600094</p></div>
-        <div class="footer__col reveal"><h4>Madurai</h4><p>26A, New Mahalipatti Road,<br />Madurai – 625001</p></div>
+        <div class="footer__col reveal"><h4>Quick Links</h4><p><a href="#about" data-link>About</a><br /><a href="#expertise" data-link>Expertise</a><br /><a href="#work" data-link>Our Work</a><br /><a href="#contact" data-link>Contact</a></p></div>
+        <div class="footer__col reveal"><h4>Offices</h4><p>Chennai HO — 4/127 Vannier 1st St, Choolaimedu, Chennai 600094<br /><br />Madurai — 26A, New Mahalipatti Road, Madurai 625001</p></div>
         <div class="footer__col reveal"><h4>Contact</h4><p><a href="tel:+918838642610">+91 88386 42610</a><br /><a href="tel:+919443934478">+91 94439 34478</a><br /><a href="mailto:hello@genpixevents.in">hello@genpixevents.in</a></p></div>
       </div>
     </div>
