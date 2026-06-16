@@ -5,7 +5,7 @@
   const $ = (s, c) => (c || document).querySelector(s);
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
 
-  const PAGES = ['home', 'about', 'process', 'expertise', 'clients', 'work', 'contact'];
+  const PAGES = ['home', 'about', 'process', 'expertise', 'events', 'clients', 'work', 'contact'];
   const ALIAS = { shows: 'work', testimonials: 'clients', '': 'home' };
   const allPages = $$('[data-page]');
   let currentPage = 'home';
@@ -57,14 +57,23 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  /* ===== HERO BACKGROUND SLIDESHOW ===== */
-  const heroSlides = $$('#heroBg .hero__slide');
-  if (heroSlides.length > 1 && !reduceMotion) {
-    let hi = 0;
+  /* ===== HERO BACKGROUND SLIDE CAROUSEL ===== */
+  const heroTrack = $('#heroTrack');
+  if (heroTrack && !reduceMotion) {
+    const total = $$('.hero__slide', heroTrack).length;   // 9 real + 1 clone
+    const real = total - 1;
+    let i = 0;
     setInterval(() => {
-      heroSlides[hi].classList.remove('is-active');
-      hi = (hi + 1) % heroSlides.length;
-      heroSlides[hi].classList.add('is-active');
+      i++;
+      heroTrack.classList.add('hero__track--anim');
+      heroTrack.style.transform = 'translateX(-' + (i * 100) + '%)';
+      if (i === real) {                                    // landed on the clone of slide 1
+        setTimeout(() => {                                 // snap back to the real slide 1
+          heroTrack.classList.remove('hero__track--anim');
+          i = 0;
+          heroTrack.style.transform = 'translateX(0)';
+        }, 1150);
+      }
     }, 5000);
   }
 
